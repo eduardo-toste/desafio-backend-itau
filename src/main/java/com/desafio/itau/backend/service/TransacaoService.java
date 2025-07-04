@@ -20,4 +20,8 @@ public class TransacaoService {
         transacoes.add(transacao);
     }
 
+    public void deletarTransacoes() {
+        transacoes.clear();
+    }
+
 }
