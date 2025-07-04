@@ -22,4 +22,11 @@ public class TransacaoController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @DeleteMapping
+    public ResponseEntity<Void> deletarTransacoes() {
+        transacaoService.deletarTransacoes();
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }
