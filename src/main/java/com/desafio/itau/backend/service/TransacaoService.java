@@ -1,5 +1,6 @@
 package com.desafio.itau.backend.service;
 
+import com.desafio.itau.backend.dto.EstatisticaResponseDTO;
 import com.desafio.itau.backend.dto.TransacaoRequestDTO;
 import com.desafio.itau.backend.exception.BusinessException;
 import com.desafio.itau.backend.model.Transacao;
@@ -7,10 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class TransacaoService {
@@ -33,4 +31,17 @@ public class TransacaoService {
         transacoes.clear();
     }
 
+    public EstatisticaResponseDTO obterEstatisticas() {
+        OffsetDateTime agora = OffsetDateTime.now();
+        OffsetDateTime limite = agora.minusSeconds(60);
+
+        transacoes.removeIf(t -> t.getDataHora().isBefore(limite.minusSeconds(1)));
+
+        DoubleSummaryStatistics estatisticas = transacoes.stream()
+                .filter(t -> !t.getDataHora().isBefore(limite))
+                .mapToDouble(Transacao::getValor)
+                .summaryStatistics();
+
+        return EstatisticaResponseDTO.fromStats(estatisticas);
+    }
 }
