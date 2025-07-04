@@ -16,7 +16,7 @@ public class TransacaoController {
     private final TransacaoService transacaoService;
 
     @PostMapping
-    public ResponseEntity<Void> criarTransacao(@RequestBody @Valid TransacaoRequestDTO request) {
+    public ResponseEntity<Void> criarTransacao(@RequestBody TransacaoRequestDTO request) {
         transacaoService.criarTransacao(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
