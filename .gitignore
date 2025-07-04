@@ -1,0 +1,57 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+/logs/
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Compiled class files
+*.class
+
+# Lombok delomboked classes
+delombok/
+
+# Environment
+.env
+.env.*
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.~*
+
+# JetBrains Rider
+.idea/
+
+# Test reports
+/test-output/
+/surefire-reports/
+/jacoco.exec
+
+# Local databases / files
+*.h2.db
+*.sqlite
+*.mv.db
+
+# Java version tool files
+.sdkman/
