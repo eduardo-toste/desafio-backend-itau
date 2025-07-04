@@ -1,0 +1,25 @@
+package com.desafio.itau.backend.controller;
+
+import com.desafio.itau.backend.dto.TransacaoRequestDTO;
+import com.desafio.itau.backend.service.TransacaoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/transacao")
+@RequiredArgsConstructor
+public class TransacaoController {
+
+    private final TransacaoService transacaoService;
+
+    @PostMapping
+    public ResponseEntity<Void> criarTransacao(@RequestBody @Valid TransacaoRequestDTO request) {
+        transacaoService.criarTransacao(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+}
