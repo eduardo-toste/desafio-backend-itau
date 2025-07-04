@@ -29,10 +29,10 @@ public class TransacaoController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/estatistica")
-    public ResponseEntity<EstatisticaResponseDTO> obterEstatisticas() {
-        EstatisticaResponseDTO estatisticas = transacaoService.obterEstatisticas();
+    @GetMapping("/estatistica/{tempoEmSegundos}")
+    public ResponseEntity<EstatisticaResponseDTO> obterEstatisticas(@PathVariable("tempoEmSegundos") Long tempoEmSegundos) {
 
+        EstatisticaResponseDTO estatisticas = transacaoService.obterEstatisticas(tempoEmSegundos);
         return ResponseEntity.status(HttpStatus.OK).body(estatisticas);
     }
 
