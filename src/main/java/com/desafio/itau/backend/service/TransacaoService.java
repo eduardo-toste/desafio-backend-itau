@@ -31,11 +31,9 @@ public class TransacaoService {
         transacoes.clear();
     }
 
-    public EstatisticaResponseDTO obterEstatisticas() {
+    public EstatisticaResponseDTO obterEstatisticas(Long tempoEmSegundos) {
         OffsetDateTime agora = OffsetDateTime.now();
-        OffsetDateTime limite = agora.minusSeconds(60);
-
-        transacoes.removeIf(t -> t.getDataHora().isBefore(limite.minusSeconds(1)));
+        OffsetDateTime limite = agora.minusSeconds(tempoEmSegundos);
 
         DoubleSummaryStatistics estatisticas = transacoes.stream()
                 .filter(t -> !t.getDataHora().isBefore(limite))
